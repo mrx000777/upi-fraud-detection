@@ -1,0 +1,5 @@
+transaction_id,transaction_amount,transaction_hour,transaction_type,device_type,transactions_last_24h,account_age_years,Location_change,is_new_device,failed_attempts,fraud_score,risk_level
+TXN0001,2108.187519975914,22,P2P,Android,18,2,1,0,5,5,High
+TXN0002,7649.396384940903,9,P2M,iOS,3,2,0,1,2,2,Low
+TXN0003,4779.183711943109,9,P2M,Android,2,5,0,0,4,2,Low
+TXN0004,8199.092161140345,17,P2P,Android,5,10,0,1,4,4,Review

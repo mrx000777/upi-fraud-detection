@@ -1,10 +1,15 @@
 import random
-def generate_transaction():
+import pandas as pd 
+def generate_transaction(number):
+    hours=list(range(24)) 
+    weights=[1,1,1,1,1,1,3,3,3,5,5,5,5,5,5,5,5,5,5,5,5,5,5,2]
+    transaction_type=["P2P","P2M"]
+    transaction_type_weight=[7,3]
     transaction={
-    "transaction_id":"TXN001",
-    "transaction_amount":random.randint(0,50000),
-    "transaction_hour": random.randint(0,23),
-    "transaction_type":random.choice(["P2P","P2M"]),
+     "transaction_id":f"TXN{number:04}",
+    "transaction_amount":max(0,random.gauss(5000,3000)),
+    "transaction_hour": random.choices(population=hours,weights=weights,k=1)[0],
+    "transaction_type":random.choice(transaction_type,transaction_type_weight=transaction_type_weight,k=1)[0],
     "device_type":random.choice(["Android", "iOS"]),
     "transactions_last_24h": random.randint(0, 20),
     "account_age_years": random.randint(0, 10),
@@ -12,7 +17,6 @@ def generate_transaction():
     "is_new_device":random.randint(0,1),
     "failed_attempts":random.randint(0,5)
 }
-    print(transaction)
     fraud_score=0
     if transaction["transaction_amount"]>30000:
         fraud_score+=2
@@ -31,17 +35,24 @@ def generate_transaction():
     print(f"the fraud score is {fraud_score}")
 
     if fraud_score<3:
-         print("Risk Level: LOW - Transaction looks normal")
+         risk_level="Low"
     elif fraud_score<5:
-         print("Risk Level: REVIEW - Some suspicious signals detected")
+          risk_level="Review"
     elif fraud_score<7:
-         print("Risk Level: HIGH - Multiple suspicious signals detected")
+          risk_level="High"
     elif fraud_score<=8:
-        print("Risk Level: CRITICAL - Strong suspicious activity detected")
+          risk_level="CRITICAL"
     else:
-         print("Risk Level: VERY HIGH - Additional verification required")
+          risk_level="Very high"
     transaction["fraud_score"]=fraud_score
+    transaction["risk_level"]=risk_level
     return transaction
-
-transaction=generate_transaction()
-print(transaction)
+number = int(input("How many transactions do you want? "))
+transaction=[]
+for i in range(number):
+     transaction_new=generate_transaction(i+1)
+     transaction.append(transaction_new)
+# print(transaction)
+df=pd.DataFrame(transaction)
+# print(df)
+df.to_csv("../data/transactions.csv",index=False)
