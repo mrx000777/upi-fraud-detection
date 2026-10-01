@@ -5,17 +5,40 @@ def generate_transaction(number):
     weights=[1,1,1,1,1,1,3,3,3,5,5,5,5,5,5,5,5,5,5,5,5,5,5,2]
     transaction_type=["P2P","P2M"]
     transaction_type_weight=[7,3]
+    device_type=["Android","iOS"]
+    device_type_weight=[7,3]
+    low=[0,1,2,3]
+    medium=[4,5,6,7,8,9]
+    high=[10,11,12,13,14,15]
+    rare=[16,17,18,19,20]
+    transaction_count=low+medium+high+rare
+    transaction_count_weight=[7,7,7,7,4,4,4,4,4,4,2,2,2,2,2,2,1,1,1,1,1]
+    new_account=[0,1]
+    establish_account=[2,3,4,5]
+    old_account=[6,7,8,9,10]
+    all_account=new_account+establish_account+old_account
+    all_account_weight=[1,1,5,5,5,5,2,2,2,2,2]
+    location_change = [0, 1]
+    location_change_weight=[7,3]
+    is_new_device=[0,1]
+    is_new_device_weight=[6,4]
+    low_attempts=[0,1,2]
+    medium_attempts=[3]
+    high_attempts=[4,5]
+    total_falied_attempts=low_attempts+medium_attempts+high_attempts
+    total_falied_attempts_weight=[6,6,6,3,1,1]
+
     transaction={
      "transaction_id":f"TXN{number:04}",
     "transaction_amount":max(0,random.gauss(5000,3000)),
-    "transaction_hour": random.choices(population=hours,weights=weights,k=1)[0],
-    "transaction_type":random.choice(transaction_type,transaction_type_weight=transaction_type_weight,k=1)[0],
-    "device_type":random.choice(["Android", "iOS"]),
-    "transactions_last_24h": random.randint(0, 20),
-    "account_age_years": random.randint(0, 10),
-    "Location_change":random.randint(0,1),
-    "is_new_device":random.randint(0,1),
-    "failed_attempts":random.randint(0,5)
+    "transaction_hour": random.choices(hours,weights=weights,k=1)[0],
+    "transaction_type":random.choices(transaction_type,weights=transaction_type_weight,k=1)[0],
+    "device_type":random.choices(device_type,weights=device_type_weight,k=1)[0],
+    "transactions_last_24h": random.choices(transaction_count,weights=transaction_count_weight,k=1)[0],
+    "account_age_years": random.choices(all_account,weights=all_account_weight,k=1)[0],
+    "Location_change":random.choices(location_change,weights=location_change_weight,k=1)[0],
+    "is_new_device":random.choices(is_new_device,weights=is_new_device_weight,k=1)[0],
+    "failed_attempts":random.choices(total_falied_attempts,weights=total_falied_attempts_weight,k=1)[0]
 }
     fraud_score=0
     if transaction["transaction_amount"]>30000:
@@ -55,4 +78,5 @@ for i in range(number):
 # print(transaction)
 df=pd.DataFrame(transaction)
 # print(df)
+
 df.to_csv("../data/transactions.csv",index=False)
