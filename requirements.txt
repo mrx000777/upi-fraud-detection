@@ -11,3 +11,4 @@ joblib
 python-dotenv
 shap
 faker
+gunicorn
