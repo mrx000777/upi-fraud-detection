@@ -133,8 +133,52 @@ http://127.0.0.1:5000
 
 The trained model and feature-name files must be available in the expected `models/` directory.
 
-## How It Works
+How It Works
 
-1. Transaction details are entered through the web interface.
-2. The Flask backend receives the submitted information.
-3. Python validates the
+Transaction details are entered through the web interface.
+
+The Flask backend receives the submitted information.
+
+Python validates the input and prepares model features.
+
+The trained Random Forest model generates a classification and estimated fraud probability.
+
+The interface displays the prediction result.
+
+The current implementation accepts a limited set of input features. The prediction pipeline is still being improved to ensure consistency with the complete feature set used during model training.
+
+Future Improvements
+
+Validate and improve feature preparation.
+
+Expand the prediction form to collect relevant transaction attributes.
+
+Add interactive charts and transaction exploration.
+
+Improve model evaluation and validation.
+
+Test the model on appropriately sourced, representative data.
+
+Add automated testing and deployment.
+
+Improve API error handling and input validation.
+
+Limitations
+
+The dataset is synthetic.
+
+Model metrics may not generalize to real transactions.
+
+The current prediction interface does not collect every feature expected by the trained model.
+
+Predictions are experimental and should not be used to approve, reject, or block real financial transactions.
+
+Author
+
+Manish Thakur
+
+Machine Learning and Data Science Portfolio Project.
+
+License
+
+This project is intended for educational and portfolio purposes. Add a suitable open-source license if you intend to permit others to reuse or modify the code.
