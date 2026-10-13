@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101827">
+  <meta name="description" content="FraudGuard UPI transaction fraud detection dashboard.">
+  <title>FraudGuard | Transaction Intelligence</title>
+  <link rel="stylesheet" href="/frontend/style.css">
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <a class="brand" href="#dashboard">
+        <span class="brand-symbol">F</span>
+        <span class="brand-copy"><strong>FraudGuard</strong><small>TRANSACTION INTELLIGENCE</small></span>
+      </a>
+      <div class="sidebar-section">
+        <p class="sidebar-heading">WORKSPACE</p>
+        <nav class="navigation">
+          <a href="#dashboard" class="nav-link active"><span class="nav-indicator"></span>Dashboard</a>
+          <a href="#prediction" class="nav-link"><span class="nav-indicator"></span>Fraud Prediction</a>
+          <a href="#explorer" class="nav-link"><span class="nav-indicator"></span>Transaction Explorer</a>
+          <a href="#performance" class="nav-link"><span class="nav-indicator"></span>Model Performance</a>
+        </nav>
+      </div>
+      <div class="sidebar-bottom">
+        <div class="environment"><span class="environment-dot"></span><div><strong>Development environment</strong><small>UPI Fraud Detection</small></div></div>
+        <p class="sidebar-footer">MACHINE LEARNING PROJECT</p>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="page-heading">
+          <p class="breadcrumb">Workspace <span>/</span> Overview</p>
+          <h1>Dashboard</h1>
+          <p class="page-subtitle">Monitor transaction patterns and explore fraud risk.</p>
+        </div>
+        <div class="profile"><div class="profile-avatar">MT</div><div class="profile-details"><strong>Manish Thakur</strong><small>Project developer</small></div></div>
+      </header>
+
+      <section id="dashboard" class="page-section">
+        <div class="hero">
+          <div class="hero-content">
+            <span class="hero-label">UPI TRANSACTION INTELLIGENCE</span>
+            <h2>Smarter insights.<br>Better risk awareness.</h2>
+            <p>Explore transaction data, identify potential risk signals, and assess UPI transactions using your machine learning model.</p>
+            <a href="#prediction" class="button button-primary">Assess a transaction <span>→</span></a>
+          </div>
+          <div class="hero-visual" aria-hidden="true"><div class="visual-ring ring-outer"></div><div class="visual-ring ring-middle"></div><div class="visual-ring ring-inner"></div><div class="visual-core">FG</div><span class="visual-point point-one"></span><span class="visual-point point-two"></span><span class="visual-point point-three"></span></div>
+        </div>
+
+        <div class="section-header">
+          <div><h2>Dataset overview</h2><p>A snapshot of the synthetic dataset used for model development.</p></div>
+          <span class="tag">SYNTHETIC DATA</span>
+        </div>
+        <div class="metrics-grid">
+          <article class="metric-card"><div class="metric-heading"><span>Total transactions</span><span class="metric-mark mark-teal">TX</span></div><p class="metric-value">200,000</p><p class="metric-description">Records in the dataset</p></article>
+          <article class="metric-card"><div class="metric-heading"><span>Fraudulent transactions</span><span class="metric-mark mark-red">FR</span></div><p class="metric-value">6,400</p><p class="metric-description">Records labelled as fraud</p></article>
+          <article class="metric-card"><div class="metric-heading"><span>Fraud rate</span><span class="metric-mark mark-amber">%</span></div><p class="metric-value">3.20%</p><p class="metric-description">Fraud-labelled records</p></article>
+          <article class="metric-card"><div class="metric-heading"><span>Model recall</span><span class="metric-mark mark-blue">ML</span></div><p class="metric-value">89.92%</p><p class="metric-description">Held-out test evaluation</p></article>
+        </div>
+
+        <div class="dashboard-grid">
+          <article class="surface-card distribution-card">
+            <div class="card-heading"><div><h2>Transaction distribution</h2><p>Breakdown of dataset labels</p></div><span class="subtle-tag">OVERVIEW</span></div>
+            <div class="distribution-summary"><div><span class="distribution-label">Fraud-labelled</span><p class="distribution-value">6,400 <small>transactions</small></p></div><strong class="distribution-percentage">3.2%</strong></div>
+            <div class="distribution-track" role="img" aria-label="3.2 percent of dataset records are labelled fraudulent"><div class="distribution-fill"></div></div>
+            <div class="legend"><span><i class="legend-indicator legend-fraud"></i> Fraudulent</span><span><i class="legend-indicator legend-legitimate"></i> Legitimate</span></div>
+            <div class="distribution-note"><span>Dataset size</span><strong>200,000 records</strong></div>
+          </article>
+          <article class="surface-card actions-card">
+            <div class="card-heading"><div><h2>Quick access</h2><p>Continue exploring your project</p></div></div>
+            <a class="quick-link" href="#prediction"><span class="quick-link-content"><strong>Fraud prediction</strong><small>Assess a transaction using the model</small></span><span class="quick-arrow">→</span></a>
+            <a class="quick-link" href="#explorer"><span class="quick-link-content"><strong>Transaction explorer</strong><small>Explore transaction records</small></span><span class="quick-arrow">→</span></a>
+            <a class="quick-link" href="#performance"><span class="quick-link-content"><strong>Model performance</strong><small>Review evaluation metrics</small></span><span class="quick-arrow">→</span></a>
+          </article>
+        </div>
+      </section>
+
+      <section id="prediction" class="page-section secondary-section">
+        <div class="section-header"><div><h2>Fraud prediction</h2><p>Enter transaction details and request a prediction from your Python model.</p></div><span class="tag">MODEL INFERENCE</span></div>
+        <div class="surface-card prediction-card">
+          <div class="card-heading"><div><h2>Transaction risk assessment</h2><p>Complete the fields below. All amounts are in Indian rupees.</p></div></div>
+          <form id="prediction-form" class="prediction-form">
+            <div class="form-grid">
+              <div class="form-field"><label for="amount_inr">Transaction amount (₹)</label><input id="amount_inr" name="amount_inr" type="number" min="0.01" step="0.01" placeholder="e.g. 5000" required></div>
+              <div class="form-field"><label for="hour_of_day">Transaction hour (0–23)</label><input id="hour_of_day" name="hour_of_day" type="number" min="0" max="23" placeholder="e.g. 22" required></div>
+              <div class="form-field"><label for="day_of_week">Day of week</label><select id="day_of_week" name="day_of_week" required><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option><option value="Friday">Friday</option><option value="Saturday">Saturday</option><option value="Sunday">Sunday</option></select></div>
+              <div class="form-field"><label for="sender_age_group">Sender age group</label><select id="sender_age_group" name="sender_age_group" required><option value="18-25">18–25</option><option value="26-35">26–35</option><option value="36-45">36–45</option><option value="46-60">46–60</option><option value="60+">60+</option></select></div>
+              <div class="form-field form-field-wide"><label for="sender_avg_amount_30d">Sender's average transaction amount (last 30 days) (₹)</label><input id="sender_avg_amount_30d" name="sender_avg_amount_30d" type="number" min="0.01" step="0.01" placeholder="e.g. 1200" required></div>
+            </div>
+            <div class="form-actions"><button class="button button-primary" type="submit" id="predict-button">Predict Fraud <span>→</span></button><p class="form-hint">Prototype estimate only; not a real-world financial decision.</p></div>
+          </form>
+          <div id="prediction-result" class="prediction-result" aria-live="polite" hidden></div>
+        </div>
+      </section>
+
+      <section id="explorer" class="page-section secondary-section">
+        <div class="section-header"><div><h2>Transaction explorer</h2><p>Explore the dataset as a future enhancement.</p></div></div>
+        <div class="placeholder-card"><span class="section-number">02</span><div><h3>Dataset exploration</h3><p>Searchable transaction records, filters, and interactive charts can be added here next.</p></div></div>
+      </section>
+
+      <section id="performance" class="page-section secondary-section">
+        <div class="section-header"><div><h2>Model performance</h2><p>Evaluation results from the held-out synthetic test set.</p></div><span class="tag">TEST SET</span></div>
+        <div class="metrics-grid performance-grid">
+          <article class="metric-card"><div class="metric-heading"><span>Fraud precision</span></div><p class="metric-value">98.04%</p><p class="metric-description">Predicted fraud labels that were correct</p></article>
+          <article class="metric-card"><div class="metric-heading"><span>Fraud recall</span></div><p class="metric-value">89.92%</p><p class="metric-description">Fraud labels detected by the model</p></article>
+          <article class="metric-card"><div class="metric-heading"><span>Fraud F1 score</span></div><p class="metric-value">93.81%</p><p class="metric-description">Combined precision and recall</p></article>
+        </div>
+        <p class="disclaimer">These metrics describe evaluation on a synthetic dataset. They do not establish real-world fraud detection performance. The current prediction form supplies only a subset of model features, so its output is a prototype estimate.</p>
+      </section>
+
+      <footer class="footer"><strong>FraudGuard</strong><span>UPI Transaction Fraud Detection</span><span>Developed by <b>Manish Thakur</b></span><span>Machine Learning Portfolio Project</span></footer>
+    </main>
+  </div>
+
+  <script>
+    const navLinks = document.querySelectorAll(".nav-link");
+    navLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.forEach(item => item.classList.remove("active"));
+        link.classList.add("active");
+      });
+    });
+
+    const form = document.getElementById("prediction-form");
+    const resultBox = document.getElementById("prediction-result");
+    const predictButton = document.getElementById("predict-button");
+
+    form.addEventListener("submit", async event => {
+      event.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      data.amount_inr = Number(data.amount_inr);
+      data.hour_of_day = Number(data.hour_of_day);
+      data.sender_avg_amount_30d = Number(data.sender_avg_amount_30d);
+
+      resultBox.hidden = false;
+      resultBox.className = "prediction-result loading";
+      resultBox.textContent = "Analyzing transaction...";
+      predictButton.disabled = true;
+
+      try {
+        const response = await fetch("/predict", {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify(data)
+        });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || "Prediction failed.");
+
+        const probability = (result.fraud_probability * 100).toFixed(2);
+        resultBox.className = "prediction-result " + (result.prediction === 1 ? "result-fraud" : "result-safe");
+        resultBox.innerHTML = "";
+        const title = document.createElement("strong");
+        title.textContent = result.message;
+        const detail = document.createElement("p");
+        detail.textContent = "Estimated fraud probability: " + probability + "%";
+        const note = document.createElement("small");
+        note.textContent = "Prototype output based on the current model input preparation.";
+        resultBox.append(title, detail, note);
+      } catch (error) {
+        resultBox.className = "prediction-result result-error";
+        resultBox.textContent = "Could not get a prediction: " + error.message;
+      } finally {
+        predictButton.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
